@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import BoardCreateCard from './BoardCreateCard';
+import BoardCard from './BoardCard';
 
 const BoardDiv = styled.div`
   display: flex;
@@ -9,10 +10,34 @@ const BoardDiv = styled.div`
 `;
 
 class Board extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      boards: Object.keys(localStorage)
+    };
+
+    this.appendBoard = this.appendBoard.bind(this);
+  }
+
+  appendBoard(newBoardName) {
+    if (localStorage.getItem(newBoardName)) {
+      alert('already exist board name.');
+      return;
+    }
+
+    this.setState({
+      boards: [...this.state.boards, newBoardName]
+    });
+    localStorage.setItem(newBoardName, JSON.stringify([]));
+  }
+
   render() {
     return (
       <BoardDiv>
-        <BoardCreateCard></BoardCreateCard>
+        <BoardCreateCard appendBoard={this.appendBoard} />
+        {this.state.boards.map(boardName => {
+          return <BoardCard key={boardName} name={boardName} />;
+        })}
       </BoardDiv>
     );
   }

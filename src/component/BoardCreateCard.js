@@ -116,13 +116,9 @@ class BoardCreateCard extends React.Component {
 
   createNewBoard() {
     const { newBoardName } = this.state;
+    const { appendBoard } = this.props;
 
-    if (localStorage.getItem(newBoardName)) {
-      alert('already exist board name.');
-      throw new Error('already exist board name.');
-    }
-
-    localStorage.setItem(newBoardName, JSON.stringify([]));
+    appendBoard(newBoardName);
   }
 
   render() {
