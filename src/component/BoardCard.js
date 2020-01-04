@@ -96,16 +96,16 @@ class BoardCard extends React.Component {
       newBoardName: ''
     };
 
-    this.createNewBoard = this.createNewBoard.bind(this);
-    this.cancelNewBoard = this.cancelNewBoard.bind(this);
+    this.handleCreateNewBoardButton = this.handleCreateNewBoardButton.bind(this);
+    this.handleCancelNewBoardButton = this.handleCancelNewBoardButton.bind(this);
     this.handleNewBoardNameInputChange = this.handleNewBoardNameInputChange.bind(this);
   }
 
-  createNewBoard() {
+  handleCreateNewBoardButton() {
     this.setState({ newBoard: true });
   }
 
-  cancelNewBoard() {
+  handleCancelNewBoardButton() {
     this.setState({ newBoard: false });
   }
 
@@ -121,7 +121,7 @@ class BoardCard extends React.Component {
             <NewBoardCardHeaderDiv>
               <h3>Creating a board</h3>
               <FloatRightDiv>
-                <FontAwesomeIcon icon={faTimes} onClick={this.cancelNewBoard} />
+                <FontAwesomeIcon icon={faTimes} onClick={this.handleCancelNewBoardButton} />
               </FloatRightDiv>
             </NewBoardCardHeaderDiv>
             <NewBoardCardBodyDiv>
@@ -137,12 +137,12 @@ class BoardCard extends React.Component {
               <></>
             )}
             <ButtonsDiv>
-              <CancelButton onClick={this.cancelNewBoard}>Cancel</CancelButton>
-              <CreateButton>Create</CreateButton>
+              <CancelButton onClick={this.handleCancelNewBoardButton}>Cancel</CancelButton>
+              <CreateButton disabled={!this.state.newBoardName}>Create</CreateButton>
             </ButtonsDiv>
           </CardDiv>
         ) : (
-          <CardDiv onClick={this.createNewBoard}>
+          <CardDiv onClick={this.handleCreateNewBoardButton}>
             <NewBoardCardBodyDiv>
               <h3>Create a new board...</h3>
             </NewBoardCardBodyDiv>
