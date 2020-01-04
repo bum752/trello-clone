@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import BoardCard from './BoardCard';
+import BoardCreateCard from './BoardCreateCard';
 
 const BoardDiv = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ class Board extends React.Component {
   render() {
     return (
       <BoardDiv>
-        <BoardCard></BoardCard>
+        <BoardCreateCard></BoardCreateCard>
       </BoardDiv>
     );
   }

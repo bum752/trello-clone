@@ -88,7 +88,7 @@ const CreateButton = styled.button`
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16), 0 3px 3px rgba(0, 0, 0, 0.23);
 `;
 
-class BoardCard extends React.Component {
+class BoardCreateCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -99,6 +99,7 @@ class BoardCard extends React.Component {
     this.handleCreateNewBoardButton = this.handleCreateNewBoardButton.bind(this);
     this.handleCancelNewBoardButton = this.handleCancelNewBoardButton.bind(this);
     this.handleNewBoardNameInputChange = this.handleNewBoardNameInputChange.bind(this);
+    this.createNewBoard = this.createNewBoard.bind(this);
   }
 
   handleCreateNewBoardButton() {
@@ -111,6 +112,17 @@ class BoardCard extends React.Component {
 
   handleNewBoardNameInputChange(event) {
     this.setState({ newBoardName: event.target.value });
+  }
+
+  createNewBoard() {
+    const { newBoardName } = this.state;
+
+    if (localStorage.getItem(newBoardName)) {
+      alert('already exist board name.');
+      throw new Error('already exist board name.');
+    }
+
+    localStorage.setItem(newBoardName, JSON.stringify([]));
   }
 
   render() {
@@ -138,7 +150,9 @@ class BoardCard extends React.Component {
             )}
             <ButtonsDiv>
               <CancelButton onClick={this.handleCancelNewBoardButton}>Cancel</CancelButton>
-              <CreateButton disabled={!this.state.newBoardName}>Create</CreateButton>
+              <CreateButton onClick={this.createNewBoard} disabled={!this.state.newBoardName}>
+                Create
+              </CreateButton>
             </ButtonsDiv>
           </CardDiv>
         ) : (
@@ -153,4 +167,4 @@ class BoardCard extends React.Component {
   }
 }
 
-export default BoardCard;
+export default BoardCreateCard;
