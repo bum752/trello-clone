@@ -1,11 +1,12 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Board from './component/Board';
 
 function App() {
   return (
-    <>
-      <Board/>
-    </>
+    <Router>
+      <Route path="/" exact={true} component={Board}></Route>
+    </Router>
   );
 }
 
