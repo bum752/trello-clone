@@ -118,7 +118,8 @@ class BoardCreateCard extends React.Component {
     const { newBoardName } = this.state;
     const { appendBoard } = this.props;
 
-    appendBoard(newBoardName);
+    const success = appendBoard(newBoardName);
+    if (success) this.setState({ newBoard: false });
   }
 
   render() {

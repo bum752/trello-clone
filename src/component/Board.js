@@ -22,13 +22,15 @@ class Board extends React.Component {
   appendBoard(newBoardName) {
     if (localStorage.getItem(newBoardName)) {
       alert('already exist board name.');
-      return;
+      return false;
     }
 
     this.setState({
       boards: [...this.state.boards, newBoardName]
     });
     localStorage.setItem(newBoardName, JSON.stringify([]));
+
+    return true;
   }
 
   render() {
