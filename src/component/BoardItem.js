@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import BoardListCard from './BoardListCard';
 
 const BoardItemDiv = styled.div`
   padding: 60px 35px;
@@ -20,11 +21,14 @@ const BoardTitleDiv = styled.div`
 class BoardItem extends React.Component {
   render() {
     return (
-      <BoardItemDiv>
-        <BoardTitleDiv>
-          <h1>{this.props.match.params.boardId}</h1>
-        </BoardTitleDiv>
-      </BoardItemDiv>
+      <>
+        <BoardItemDiv>
+          <BoardTitleDiv>
+            <h1>{this.props.match.params.boardId}</h1>
+          </BoardTitleDiv>
+        </BoardItemDiv>
+        <BoardListCard></BoardListCard>
+      </>
     );
   }
 }
